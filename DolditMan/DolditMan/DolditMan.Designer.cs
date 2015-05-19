@@ -28,20 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.playButton = new System.Windows.Forms.Button();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.scoreLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // playButton
             // 
             this.playButton.BackColor = System.Drawing.Color.Transparent;
+            this.playButton.BackgroundImage = global::DolditMan.Properties.Resources.dolditBackground;
+            this.playButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.playButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.playButton.Location = new System.Drawing.Point(463, 460);
+            this.playButton.Location = new System.Drawing.Point(517, 444);
             this.playButton.Name = "playButton";
-            this.playButton.Size = new System.Drawing.Size(119, 40);
+            this.playButton.Size = new System.Drawing.Size(125, 46);
             this.playButton.TabIndex = 0;
             this.playButton.Text = "PLAY";
             this.playButton.UseVisualStyleBackColor = false;
@@ -63,11 +62,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::DolditMan.Properties.Resources.dolditBackground;
-            this.ClientSize = new System.Drawing.Size(1005, 512);
+            this.ClientSize = new System.Drawing.Size(1074, 513);
             this.Controls.Add(this.scoreLabel);
             this.Controls.Add(this.playButton);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "DolditMan";
-            this.Text = "Form1";
+            this.Text = "DolditMan";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
 
@@ -75,9 +75,7 @@
 
         #endregion
 
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Button playButton;
-        private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label scoreLabel;
     }
 }
