@@ -7,3 +7,13 @@ D:\Learning\SoftUni\SoftUniGitHub\DOLDIT\trunk\DolditMan\DolditMan\obj\Debug\Dol
 D:\Learning\SoftUni\SoftUniGitHub\DOLDIT\trunk\DolditMan\DolditMan\obj\Debug\DolditMan.csproj.GenerateResource.Cache
 D:\Learning\SoftUni\SoftUniGitHub\DOLDIT\trunk\DolditMan\DolditMan\obj\Debug\DolditMan.exe
 D:\Learning\SoftUni\SoftUniGitHub\DOLDIT\trunk\DolditMan\DolditMan\obj\Debug\DolditMan.pdb
+E:\Programing\C#ADVANCETEAMWORK\DOLDIT\DolditMan\DolditMan\bin\Debug\DolditMan.exe.config
+E:\Programing\C#ADVANCETEAMWORK\DOLDIT\DolditMan\DolditMan\obj\Debug\DolditMan.exe
+E:\Programing\C#ADVANCETEAMWORK\DOLDIT\DolditMan\DolditMan\obj\Debug\DolditMan.pdb
+E:\Programing\C#ADVANCETEAMWORK\DOLDIT\DolditMan\DolditMan\bin\Debug\Full.png
+E:\Programing\C#ADVANCETEAMWORK\DOLDIT\DolditMan\DolditMan\bin\Debug\DolditMan.exe
+E:\Programing\C#ADVANCETEAMWORK\DOLDIT\DolditMan\DolditMan\bin\Debug\DolditMan.pdb
+E:\Programing\C#ADVANCETEAMWORK\DOLDIT\DolditMan\DolditMan\obj\Debug\DolditMan.csprojResolveAssemblyReference.cache
+E:\Programing\C#ADVANCETEAMWORK\DOLDIT\DolditMan\DolditMan\obj\Debug\DolditMan.DolditMan.resources
+E:\Programing\C#ADVANCETEAMWORK\DOLDIT\DolditMan\DolditMan\obj\Debug\DolditMan.Properties.Resources.resources
+E:\Programing\C#ADVANCETEAMWORK\DOLDIT\DolditMan\DolditMan\obj\Debug\DolditMan.csproj.GenerateResource.Cache

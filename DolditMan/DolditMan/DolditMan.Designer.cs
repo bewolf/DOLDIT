@@ -61,14 +61,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::DolditMan.Properties.Resources.dolditBackground;
             this.ClientSize = new System.Drawing.Size(1074, 513);
             this.Controls.Add(this.scoreLabel);
             this.Controls.Add(this.playButton);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "DolditMan";
             this.Text = "DolditMan";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.DolditMan_Paint);
             this.ResumeLayout(false);
 
         }
