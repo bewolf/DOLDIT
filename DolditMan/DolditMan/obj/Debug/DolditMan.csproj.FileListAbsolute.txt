@@ -1,1 +1,9 @@
 D:\Learning\SoftUni\SoftUniGitHub\DOLDIT\trunk\DolditMan\DolditMan\bin\Debug\DolditMan.exe.config
+D:\Learning\SoftUni\SoftUniGitHub\DOLDIT\trunk\DolditMan\DolditMan\bin\Debug\DolditMan.exe
+D:\Learning\SoftUni\SoftUniGitHub\DOLDIT\trunk\DolditMan\DolditMan\bin\Debug\DolditMan.pdb
+D:\Learning\SoftUni\SoftUniGitHub\DOLDIT\trunk\DolditMan\DolditMan\obj\Debug\DolditMan.csprojResolveAssemblyReference.cache
+D:\Learning\SoftUni\SoftUniGitHub\DOLDIT\trunk\DolditMan\DolditMan\obj\Debug\DolditMan.DolditMan.resources
+D:\Learning\SoftUni\SoftUniGitHub\DOLDIT\trunk\DolditMan\DolditMan\obj\Debug\DolditMan.Properties.Resources.resources
+D:\Learning\SoftUni\SoftUniGitHub\DOLDIT\trunk\DolditMan\DolditMan\obj\Debug\DolditMan.csproj.GenerateResource.Cache
+D:\Learning\SoftUni\SoftUniGitHub\DOLDIT\trunk\DolditMan\DolditMan\obj\Debug\DolditMan.exe
+D:\Learning\SoftUni\SoftUniGitHub\DOLDIT\trunk\DolditMan\DolditMan\obj\Debug\DolditMan.pdb
