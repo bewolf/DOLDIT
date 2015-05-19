@@ -57,7 +57,7 @@ namespace DolditMan
 
         private void label1_Click(object sender, EventArgs e)
         {
-
+            // Не пишете нищо
         }
 
         private void DolditMan_Paint(object sender, PaintEventArgs e)
