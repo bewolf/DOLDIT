@@ -14,6 +14,8 @@ namespace DolditMan
 {
     public partial class DolditMan : Form
     {
+        delegate void SetTextCallback(string text);
+        private int score;
         private int X1;
         private int X2;
         Thread t;
@@ -22,7 +24,7 @@ namespace DolditMan
             InitializeComponent();
             ScoreBoard.Visible = false;
             ScoreBoard.Enabled = false;
-
+            score = 0;
             X1 = 0;
             X2 = 1090;
             
@@ -86,6 +88,7 @@ namespace DolditMan
         {
             while (true)
             {
+                
                 if (X1 == -1090)
                 {
                     X1 = 1090;
@@ -98,8 +101,10 @@ namespace DolditMan
                 X2 -= 1;
                 Invalidate();
                 Thread.Sleep(15);
-
+                score += 2;
+                this.SetText(score.ToString());
             }
+            
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -126,12 +131,29 @@ namespace DolditMan
             using (var image = new Bitmap("Full.png"))
             {
                 canvas.DrawImage(image, X1, 28, 1090, 552);
+                scoreNumbers.Text = score.ToString();
             }
             using (var image = new Bitmap("Full.png"))
             {
                 canvas.DrawImage(image, X2, 28, 1090, 552);
+                
             }
-
+            
+        }
+        private void SetText(string text)
+        {
+            // InvokeRequired required compares the thread ID of the
+            // calling thread to the thread ID of the creating thread.
+            // If these threads are different, it returns true.
+            if (this.scoreNumbers.InvokeRequired)
+            {
+                SetTextCallback d = new SetTextCallback(SetText);
+                this.Invoke(d, new object[] { text });
+            }
+            else
+            {
+                this.scoreNumbers.Text = text;
+            }
         }
 
         private void scoreButton_Click(object sender, EventArgs e)

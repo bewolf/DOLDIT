@@ -34,6 +34,7 @@
             this.ScoreBoard = new System.Windows.Forms.DataGridView();
             this.NAME = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SCORE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.scoreNumbers = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.ScoreBoard)).BeginInit();
             this.SuspendLayout();
             // 
@@ -101,11 +102,21 @@
             this.SCORE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.SCORE.Width = 250;
             // 
+            // scoreNumbers
+            // 
+            this.scoreNumbers.BackColor = System.Drawing.Color.Transparent;
+            this.scoreNumbers.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.scoreNumbers.Location = new System.Drawing.Point(996, -1);
+            this.scoreNumbers.Name = "scoreNumbers";
+            this.scoreNumbers.Size = new System.Drawing.Size(81, 32);
+            this.scoreNumbers.TabIndex = 4;
+            // 
             // DolditMan
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(1074, 561);
+            this.Controls.Add(this.scoreNumbers);
             this.Controls.Add(this.ScoreBoard);
             this.Controls.Add(this.scoreButton);
             this.Controls.Add(this.scoreLabel);
@@ -113,6 +124,7 @@
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.KeyPreview = true;
+            this.MaximizeBox = false;
             this.Name = "DolditMan";
             this.Text = "DolditMan";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -130,6 +142,7 @@
         private System.Windows.Forms.DataGridView ScoreBoard;
         private System.Windows.Forms.DataGridViewTextBoxColumn NAME;
         private System.Windows.Forms.DataGridViewTextBoxColumn SCORE;
+        private System.Windows.Forms.Label scoreNumbers;
     }
 }
 
