@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
+using System.IO;
 
 namespace DolditMan
 {
@@ -22,6 +23,31 @@ namespace DolditMan
             X1 = 0;
             X2 = 1090;
             t = new Thread(new ThreadStart(BackgroundMove));
+            foreach (var item in ReadScore())
+            {
+                dataGridView1.Rows.Add(item);
+            }
+        }
+         public static List<string[]> ReadScore()
+        {
+            List<string[]> scoreResault = new List<string[]>();
+            StreamReader reader = new StreamReader("Score.txt");
+            using(reader)
+            {
+                
+                while(true)
+                {
+                    string line = reader.ReadLine();
+                    if(line==null)
+                    {
+                        break;
+                    }
+                    string[] splitedLine = line.Split(' ');
+                    scoreResault.Add(splitedLine); 
+                }
+                
+            }
+            return scoreResault;
         }
         private void BackgroundMove() //Metoda s koito dvijim bakcgrounda
         {
@@ -65,13 +91,18 @@ namespace DolditMan
             Graphics canvas = e.Graphics;
             using (var image = new Bitmap("Full.png"))
             {
-                canvas.DrawImage(image, X1, 0, 1090, 552);
+                canvas.DrawImage(image, X1, 28, 1090, 552);
             }
             using (var image = new Bitmap("Full.png"))
             {
-                canvas.DrawImage(image, X2, 0, 1090, 552);
+                canvas.DrawImage(image, X2, 28, 1090, 552);
             }
 
+        }
+
+        private void scoreButton_Click(object sender, EventArgs e)
+        {
+            t.Suspend();
         }
     }
 }

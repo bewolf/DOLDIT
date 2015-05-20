@@ -1,0 +1,5 @@
+Martin 100
+Goshko 2000
+Pesho 100
+Asen 200
+Gosho 10000
