@@ -25,10 +25,18 @@ namespace DolditMan
             t = new Thread(new ThreadStart(BackgroundMove));
             foreach (var item in ReadScore())
             {
-                dataGridView1.Rows.Add(item);
+                ScoreBoard.Rows.Add(item);
+            }
+            
+        }
+        private void ScoreTableSettings()
+        {
+            foreach (var item in ReadScore())
+            {
+                ScoreBoard.Rows.Add(item);
             }
         }
-         public static List<string[]> ReadScore()
+         private static List<string[]> ReadScore()
         {
             List<string[]> scoreResault = new List<string[]>();
             StreamReader reader = new StreamReader("Score.txt");
@@ -47,8 +55,29 @@ namespace DolditMan
                 }
                 
             }
+            BubbleSort(scoreResault);
             return scoreResault;
         }
+         private static void BubbleSort(List<string[]> list)
+         {
+             string[] stringSwaping = new string[2];
+             bool bubbleSortComplete = true;
+             do
+             {
+                 bubbleSortComplete = true;
+                 for (int i = 0; i < list.Count - 1; i++)
+                 {
+                     if (int.Parse(list[i][1]) < int.Parse(list[i + 1][1]))
+                     {
+                         stringSwaping = list[i];
+                         list[i] = list[i + 1];
+                         list[i + 1] = stringSwaping;
+                         bubbleSortComplete = false;
+                     }
+                 }
+             } while (!bubbleSortComplete);
+
+         }
         private void BackgroundMove() //Metoda s koito dvijim bakcgrounda
         {
             while (true)
@@ -76,6 +105,7 @@ namespace DolditMan
         private void playButton_Click(object sender, EventArgs e)
         {
             t.Start();
+            ScoreBoard.Visible = false;
             playButton.Enabled = false;
             playButton.Visible = false;
                 
@@ -103,6 +133,11 @@ namespace DolditMan
         private void scoreButton_Click(object sender, EventArgs e)
         {
             t.Suspend();
+            ScoreBoard.Rows.Clear();
+            ScoreBoard.Refresh();
+            ScoreTableSettings();
+            ScoreBoard.Visible = true;
+
         }
     }
 }

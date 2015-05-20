@@ -31,10 +31,10 @@
             this.playButton = new System.Windows.Forms.Button();
             this.scoreLabel = new System.Windows.Forms.Label();
             this.scoreButton = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.ScoreBoard = new System.Windows.Forms.DataGridView();
             this.NAME = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SCORE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ScoreBoard)).BeginInit();
             this.SuspendLayout();
             // 
             // playButton
@@ -72,35 +72,39 @@
             this.scoreButton.UseVisualStyleBackColor = true;
             this.scoreButton.Click += new System.EventHandler(this.scoreButton_Click);
             // 
-            // dataGridView1
+            // ScoreBoard
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ScoreBoard.BackgroundColor = System.Drawing.SystemColors.Desktop;
+            this.ScoreBoard.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ScoreBoard.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.NAME,
             this.SCORE});
-            this.dataGridView1.Location = new System.Drawing.Point(107, 138);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(244, 150);
-            this.dataGridView1.TabIndex = 3;
+            this.ScoreBoard.GridColor = System.Drawing.SystemColors.ActiveCaption;
+            this.ScoreBoard.Location = new System.Drawing.Point(209, 78);
+            this.ScoreBoard.Name = "ScoreBoard";
+            this.ScoreBoard.Size = new System.Drawing.Size(362, 206);
+            this.ScoreBoard.TabIndex = 3;
             // 
             // NAME
             // 
             this.NAME.HeaderText = "NAME";
             this.NAME.Name = "NAME";
-            this.NAME.ReadOnly = true;
+            this.NAME.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.NAME.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.NAME.Width = 101;
             // 
             // SCORE
             // 
             this.SCORE.HeaderText = "SCORE";
             this.SCORE.Name = "SCORE";
-            this.SCORE.ReadOnly = true;
+            this.SCORE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // DolditMan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1074, 561);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.ScoreBoard);
             this.Controls.Add(this.scoreButton);
             this.Controls.Add(this.scoreLabel);
             this.Controls.Add(this.playButton);
@@ -110,7 +114,7 @@
             this.Text = "DolditMan";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.DolditMan_Paint);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ScoreBoard)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -120,7 +124,7 @@
         private System.Windows.Forms.Button playButton;
         private System.Windows.Forms.Label scoreLabel;
         private System.Windows.Forms.Button scoreButton;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView ScoreBoard;
         private System.Windows.Forms.DataGridViewTextBoxColumn NAME;
         private System.Windows.Forms.DataGridViewTextBoxColumn SCORE;
     }
