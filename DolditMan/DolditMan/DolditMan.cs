@@ -20,14 +20,18 @@ namespace DolditMan
         public DolditMan()
         {
             InitializeComponent();
+            ScoreBoard.Visible = false;
+            ScoreBoard.Enabled = false;
+
             X1 = 0;
             X2 = 1090;
-            t = new Thread(new ThreadStart(BackgroundMove));
-            foreach (var item in ReadScore())
-            {
-                ScoreBoard.Rows.Add(item);
-            }
             
+            
+        }
+        public void StartGame()
+        {
+            t = new Thread(new ThreadStart(BackgroundMove));
+            t.Start();
         }
         private void ScoreTableSettings()
         {
@@ -104,10 +108,10 @@ namespace DolditMan
 
         private void playButton_Click(object sender, EventArgs e)
         {
-            t.Start();
-            ScoreBoard.Visible = false;
+            StartGame();
             playButton.Enabled = false;
-            playButton.Visible = false;
+            ScoreBoard.Visible = false;
+
                 
         }
 
@@ -132,11 +136,16 @@ namespace DolditMan
 
         private void scoreButton_Click(object sender, EventArgs e)
         {
-            t.Suspend();
-            ScoreBoard.Rows.Clear();
-            ScoreBoard.Refresh();
-            ScoreTableSettings();
-            ScoreBoard.Visible = true;
+            t.Abort();
+            if (!t.IsAlive)
+            {
+                ScoreBoard.Visible = true;
+                ScoreBoard.Enabled = true;
+                ScoreBoard.Rows.Clear();
+                ScoreBoard.Refresh();
+                ScoreTableSettings();
+                playButton.Enabled = true;
+            }
 
         }
     }
