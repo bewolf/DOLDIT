@@ -17,3 +17,4 @@ E:\Programing\C#ADVANCETEAMWORK\DOLDIT\DolditMan\DolditMan\obj\Debug\DolditMan.c
 E:\Programing\C#ADVANCETEAMWORK\DOLDIT\DolditMan\DolditMan\obj\Debug\DolditMan.DolditMan.resources
 E:\Programing\C#ADVANCETEAMWORK\DOLDIT\DolditMan\DolditMan\obj\Debug\DolditMan.Properties.Resources.resources
 E:\Programing\C#ADVANCETEAMWORK\DOLDIT\DolditMan\DolditMan\obj\Debug\DolditMan.csproj.GenerateResource.Cache
+D:\Learning\SoftUni\SoftUniGitHub\DOLDIT\trunk\DolditMan\DolditMan\bin\Debug\Full.png
