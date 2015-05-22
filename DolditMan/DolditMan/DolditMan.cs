@@ -18,6 +18,8 @@ namespace DolditMan
         private int score;
         private int firstBackgroundX;
         private int secondBackgroundX;
+        private int characterX;
+        private int characterY;
         private int Speed;
         private string username;
         private int level;
@@ -39,6 +41,12 @@ namespace DolditMan
             firstBackgroundX = 0;
             secondBackgroundX = 1090;
             Speed = 20;
+            CharacterCreation();
+        }
+        public void CharacterCreation()
+        {
+            characterX = 30;
+            characterY = 465;
         }
         public void StartGame()
         {
@@ -113,7 +121,7 @@ namespace DolditMan
                 Thread.Sleep(Speed);
                 score += 2;
                 
-                if(grounds[grounds.Count-1].X+grounds[grounds.Count-1].Size*100<1090)
+                if((grounds[grounds.Count-1].X+(grounds[grounds.Count-1].Size*100))<1090)
                 {
                     Ground ground = new Ground();
                     ground.X = 1200;
@@ -134,9 +142,9 @@ namespace DolditMan
            
             grounds.Clear();
             Ground ground = new Ground();
-            ground.X = 500;
-            ground.Size = 10;
-            ground.Start();
+            ground.X = 2;
+            ground.Size = 20;
+            grounds[0].Start();
             grounds.Add(ground);
             StartGame();
             playButton.Enabled = false;
@@ -166,16 +174,16 @@ namespace DolditMan
             }
             using (characterImage)
             {
-                canvas.DrawImage(characterImage, 30 , 465, 65, 65);
+                canvas.DrawImage(characterImage, characterX , characterY, 65, 65);
             }
             using (groundImage)
             {
                 foreach (var block in grounds)
                 {
-                    if (block.X + block.Size*100> 0)
+                    if (block.X + block.Size*100 > 0)
                     {
-                        Rectangle destRect = new Rectangle(block.X, 530, block.Size * 100, 100);
-                        Rectangle srcRect = new Rectangle(0, 0, block.Size*100, 65);
+                        Rectangle destRect = new Rectangle(block.X, 530, block.Size*100, 100);
+                        Rectangle srcRect = new Rectangle(0, 0, block.Size*15, 65);
                         GraphicsUnit units = GraphicsUnit.Pixel;
                         canvas.DrawImage(groundImage, destRect, srcRect, units);
                     }
