@@ -33,6 +33,8 @@
             this.ScoreBoard = new System.Windows.Forms.DataGridView();
             this.NAME = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SCORE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.exitButton = new System.Windows.Forms.Button();
+            this.stopButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.ScoreBoard)).BeginInit();
             this.SuspendLayout();
             // 
@@ -89,16 +91,42 @@
             this.SCORE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.SCORE.Width = 250;
             // 
+            // exitButton
+            // 
+            this.exitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.exitButton.Location = new System.Drawing.Point(977, -1);
+            this.exitButton.Name = "exitButton";
+            this.exitButton.Size = new System.Drawing.Size(96, 24);
+            this.exitButton.TabIndex = 4;
+            this.exitButton.Text = "EXIT";
+            this.exitButton.UseVisualStyleBackColor = true;
+            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
+            // 
+            // stopButton
+            // 
+            this.stopButton.BackColor = System.Drawing.Color.Transparent;
+            this.stopButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.stopButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.stopButton.Location = new System.Drawing.Point(2, -1);
+            this.stopButton.Name = "stopButton";
+            this.stopButton.Size = new System.Drawing.Size(92, 24);
+            this.stopButton.TabIndex = 5;
+            this.stopButton.Text = "Stop";
+            this.stopButton.UseVisualStyleBackColor = false;
+            this.stopButton.Click += new System.EventHandler(this.stopButton_Click);
+            // 
             // DolditMan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(1074, 586);
+            this.Controls.Add(this.stopButton);
+            this.Controls.Add(this.exitButton);
             this.Controls.Add(this.ScoreBoard);
             this.Controls.Add(this.scoreButton);
             this.Controls.Add(this.playButton);
             this.DoubleBuffered = true;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.Name = "DolditMan";
@@ -117,6 +145,8 @@
         private System.Windows.Forms.DataGridView ScoreBoard;
         private System.Windows.Forms.DataGridViewTextBoxColumn NAME;
         private System.Windows.Forms.DataGridViewTextBoxColumn SCORE;
+        private System.Windows.Forms.Button exitButton;
+        private System.Windows.Forms.Button stopButton;
     }
 }
 

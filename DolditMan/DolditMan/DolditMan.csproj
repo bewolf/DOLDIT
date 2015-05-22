@@ -83,6 +83,9 @@
     <None Include="Resources\dolditBackground.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="BackgraundOne.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Brick_Block.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

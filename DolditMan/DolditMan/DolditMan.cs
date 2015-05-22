@@ -18,21 +18,24 @@ namespace DolditMan
         private int score;
         private int firstBackgroundX;
         private int secondBackgroundX;
-        private int X3;
         private int Speed;
+        private string username;
+        private int level;
+        private Random randomSize = new Random();
         Thread t;
         List<Ground> grounds = new List<Ground>();
         public DolditMan()
         {
+            level = 10;
             InitializeComponent();
             ScoreBoard.Visible = false;
             ScoreBoard.Enabled = false;
+            stopButton.Visible = false;
+            stopButton.Enabled = false;
             score = 0;
             firstBackgroundX = 0;
             secondBackgroundX = 1090;
-            X3 = 1000;
             Speed = 20;
-            
         }
         public void StartGame()
         {
@@ -103,10 +106,18 @@ namespace DolditMan
                 }
                 firstBackgroundX -= 1;
                 secondBackgroundX -= 1;
-                X3 -= 1;
                 Invalidate();
                 Thread.Sleep(Speed);
                 score += 2;
+                
+                if(grounds[grounds.Count-1].X+grounds[grounds.Count-1].Size*100<1090)
+                {
+                    Ground ground = new Ground();
+                    ground.X = 1200;
+                    ground.Size = randomSize.Next(1,level);
+                    ground.Start();
+                    grounds.Add(ground);
+                }
             }
             
         }
@@ -117,6 +128,7 @@ namespace DolditMan
 
         private void playButton_Click(object sender, EventArgs e)
         {
+           
             grounds.Clear();
             Ground ground = new Ground();
             ground.X = 500;
@@ -125,7 +137,12 @@ namespace DolditMan
             grounds.Add(ground);
             StartGame();
             playButton.Enabled = false;
-            ScoreBoard.Visible = false;      
+            ScoreBoard.Visible = false;
+            playButton.Visible = false;
+            stopButton.Visible = true;
+            stopButton.Enabled = true;
+            playButton.Visible = false;
+            scoreButton.Enabled = false;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -136,7 +153,7 @@ namespace DolditMan
         private void DolditMan_Paint(object sender, PaintEventArgs e)
         {
             Graphics canvas = e.Graphics;
-            using (var image = new Bitmap("Full.png"))
+            using (var image = new Bitmap("BackgraundOne.png"))
             {
                 canvas.DrawImage(image, firstBackgroundX, 28, 1090, 560);
                 canvas.DrawImage(image, secondBackgroundX, 28, 1090, 560);
@@ -144,9 +161,6 @@ namespace DolditMan
             }
             using (var image = new Bitmap("ground.png"))
             {
-
-
-
                 foreach (var block in grounds)
                 {
                     if (block.X + block.Size*100> 0)
@@ -163,21 +177,31 @@ namespace DolditMan
 
         private void scoreButton_Click(object sender, EventArgs e)
         {
-            t.Abort();
             foreach(var ground in grounds)
             {
                 ground.Stop();
             }
-            if (!t.IsAlive)
-            {
                 ScoreBoard.Visible = true;
                 ScoreBoard.Enabled = true;
                 ScoreBoard.Rows.Clear();
                 ScoreBoard.Refresh();
                 ScoreTableSettings();
                 playButton.Enabled = true;
-            }
+        }
 
+        private void stopButton_Click(object sender, EventArgs e)
+        {
+            t.Abort();
+            playButton.Enabled = true;
+            playButton.Visible = true;
+            stopButton.Visible = false;
+            stopButton.Enabled = false;
+            scoreButton.Enabled = true;
+        }
+
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

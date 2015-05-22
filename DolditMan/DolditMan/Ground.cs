@@ -11,9 +11,7 @@ namespace DolditMan
     {
         public int X { get; set; }
         public int Size { get; set; }
-        
         Thread t;
-
         public void Start()
         {
             t = new Thread(new ThreadStart(Move));
