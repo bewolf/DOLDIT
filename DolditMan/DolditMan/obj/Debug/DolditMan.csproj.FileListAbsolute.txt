@@ -36,3 +36,17 @@ E:\Programing\C#ADVANCETEAMWORK\testing\DOLDIT\DolditMan\DolditMan\obj\Debug\Dol
 E:\Programing\C#ADVANCETEAMWORK\testing\DOLDIT\DolditMan\DolditMan\obj\Debug\DolditMan.DolditMan.resources
 E:\Programing\C#ADVANCETEAMWORK\testing\DOLDIT\DolditMan\DolditMan\obj\Debug\DolditMan.Properties.Resources.resources
 E:\Programing\C#ADVANCETEAMWORK\testing\DOLDIT\DolditMan\DolditMan\obj\Debug\DolditMan.csproj.GenerateResource.Cache
+E:\Programing\C#ADVANCETEAMWORK\finalGame\DOLDIT\DolditMan\DolditMan\bin\Debug\DolditMan.exe.config
+E:\Programing\C#ADVANCETEAMWORK\finalGame\DOLDIT\DolditMan\DolditMan\obj\Debug\DolditMan.exe
+E:\Programing\C#ADVANCETEAMWORK\finalGame\DOLDIT\DolditMan\DolditMan\obj\Debug\DolditMan.pdb
+E:\Programing\C#ADVANCETEAMWORK\finalGame\DOLDIT\DolditMan\DolditMan\bin\Debug\BackgraundOne.png
+E:\Programing\C#ADVANCETEAMWORK\finalGame\DOLDIT\DolditMan\DolditMan\bin\Debug\Brick_Block.png
+E:\Programing\C#ADVANCETEAMWORK\finalGame\DOLDIT\DolditMan\DolditMan\bin\Debug\cartman.png
+E:\Programing\C#ADVANCETEAMWORK\finalGame\DOLDIT\DolditMan\DolditMan\bin\Debug\Full.png
+E:\Programing\C#ADVANCETEAMWORK\finalGame\DOLDIT\DolditMan\DolditMan\bin\Debug\ground.png
+E:\Programing\C#ADVANCETEAMWORK\finalGame\DOLDIT\DolditMan\DolditMan\bin\Debug\DolditMan.exe
+E:\Programing\C#ADVANCETEAMWORK\finalGame\DOLDIT\DolditMan\DolditMan\bin\Debug\DolditMan.pdb
+E:\Programing\C#ADVANCETEAMWORK\finalGame\DOLDIT\DolditMan\DolditMan\obj\Debug\DolditMan.csprojResolveAssemblyReference.cache
+E:\Programing\C#ADVANCETEAMWORK\finalGame\DOLDIT\DolditMan\DolditMan\obj\Debug\DolditMan.DolditMan.resources
+E:\Programing\C#ADVANCETEAMWORK\finalGame\DOLDIT\DolditMan\DolditMan\obj\Debug\DolditMan.Properties.Resources.resources
+E:\Programing\C#ADVANCETEAMWORK\finalGame\DOLDIT\DolditMan\DolditMan\obj\Debug\DolditMan.csproj.GenerateResource.Cache

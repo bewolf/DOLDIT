@@ -127,9 +127,9 @@ namespace DolditMan
                 score += 2;
                 if(Jump)
                 {
-                    characterY--;
+                    characterY-=2;
                     count++;
-                    if(count>=50)
+                    if(count>=25)
                     {
                         Jump = false;
                         Fall = true;
@@ -137,7 +137,7 @@ namespace DolditMan
                     
                 }else if(Fall)
                 {
-                    characterY++;
+                    characterY+=2;
                     count--;
                     if(count==0)
                     {
@@ -162,18 +162,25 @@ namespace DolditMan
 
         private void playButton_Click(object sender, EventArgs e)
         {
-           
-            grounds.Clear();
-            Ground ground = new Ground();
-            ground.X = 2;
-            ground.Size = 20;
-            ground.Start();
-            grounds.Add(ground);
-            StartGame();
-            playButton.Enabled = false;
-            ScoreBoard.Visible = false;
-            playButton.Visible = false;
-            scoreButton.Enabled = false;
+            username = usernameTextBox.Text; 
+            if (username == null || username == "")
+            {
+                MessageBox.Show("Enter your name.", "NAME NOT FOUND");
+            }
+            else
+            {
+                grounds.Clear();
+                Ground ground = new Ground();
+                ground.X = 2;
+                ground.Size = 20;
+                ground.Start();
+                grounds.Add(ground);
+                StartGame();
+                playButton.Enabled = false;
+                ScoreBoard.Visible = false;
+                scoreButton.Enabled = false;
+                usernameTextBox.Enabled = false;
+            }
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -234,17 +241,23 @@ namespace DolditMan
 
         private void DolditMan_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode==Keys.Up)
+            if(e.KeyCode==Keys.Up && Jump==false && Fall ==false)
             {
                 Jump = true;
             }
-            if(e.KeyCode==Keys.Right)
+            if (e.KeyCode == Keys.Right)
             {
-                characterX += 2;
+                if(Jump == false && Fall == false)
+                    characterX += 4;
+                else
+                    characterX += 4;
             }
-            if(e.KeyCode==Keys.Left && characterX>=0)
+            if (e.KeyCode == Keys.Left && characterX >= 0)
             {
-                characterX -= 2;
+                if(Jump == false && Fall == false)
+                    characterX -= 4;
+                else
+                    characterX -= 4;
             }
             e.Handled = false;
             Invalidate();
