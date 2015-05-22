@@ -14,10 +14,12 @@ namespace DolditMan
 {
     public partial class DolditMan : Form
     {
-        delegate void SetTextCallback(string text);
+
         private int score;
         private int X1;
         private int X2;
+        private int X3;
+        private int Speed;
         Thread t;
         public DolditMan()
         {
@@ -27,7 +29,8 @@ namespace DolditMan
             score = 0;
             X1 = 0;
             X2 = 1090;
-            
+            X3 = 1000;
+            Speed = 20;
             
         }
         public void StartGame()
@@ -99,10 +102,12 @@ namespace DolditMan
                 }
                 X1 -= 1;
                 X2 -= 1;
+                X3 -= 1;
                 Invalidate();
-                Thread.Sleep(15);
+                Thread.Sleep(Speed);
                 score += 2;
-                this.SetText(score.ToString());
+               
+                
             }
             
         }
@@ -130,31 +135,20 @@ namespace DolditMan
             Graphics canvas = e.Graphics;
             using (var image = new Bitmap("Full.png"))
             {
-                canvas.DrawImage(image, X1, 28, 1090, 552);
-                scoreNumbers.Text = score.ToString();
+                canvas.DrawImage(image, X1, 28, 1090, 560);
+                canvas.DrawImage(image, X2, 28, 1090, 560);
+  
             }
-            using (var image = new Bitmap("Full.png"))
+            using (var image = new Bitmap("Brick_Block.png"))
             {
-                canvas.DrawImage(image, X2, 28, 1090, 552);
-                
+                canvas.DrawImage(image, X3, 500, 40, 40);
+                canvas.DrawImage(image, X3, 540, 40, 40);
+                canvas.DrawImage(image, X3, 580, 40, 40);
             }
             
+            
         }
-        private void SetText(string text)
-        {
-            // InvokeRequired required compares the thread ID of the
-            // calling thread to the thread ID of the creating thread.
-            // If these threads are different, it returns true.
-            if (this.scoreNumbers.InvokeRequired)
-            {
-                SetTextCallback d = new SetTextCallback(SetText);
-                this.Invoke(d, new object[] { text });
-            }
-            else
-            {
-                this.scoreNumbers.Text = text;
-            }
-        }
+        
 
         private void scoreButton_Click(object sender, EventArgs e)
         {

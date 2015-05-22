@@ -29,12 +29,10 @@
         private void InitializeComponent()
         {
             this.playButton = new System.Windows.Forms.Button();
-            this.scoreLabel = new System.Windows.Forms.Label();
             this.scoreButton = new System.Windows.Forms.Button();
             this.ScoreBoard = new System.Windows.Forms.DataGridView();
             this.NAME = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SCORE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.scoreNumbers = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.ScoreBoard)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,17 +48,6 @@
             this.playButton.Text = "Play";
             this.playButton.UseVisualStyleBackColor = false;
             this.playButton.Click += new System.EventHandler(this.playButton_Click);
-            // 
-            // scoreLabel
-            // 
-            this.scoreLabel.BackColor = System.Drawing.Color.Transparent;
-            this.scoreLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.scoreLabel.Location = new System.Drawing.Point(919, -1);
-            this.scoreLabel.Name = "scoreLabel";
-            this.scoreLabel.Size = new System.Drawing.Size(81, 32);
-            this.scoreLabel.TabIndex = 1;
-            this.scoreLabel.Text = "Score:";
-            this.scoreLabel.Click += new System.EventHandler(this.label1_Click);
             // 
             // scoreButton
             // 
@@ -102,24 +89,13 @@
             this.SCORE.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.SCORE.Width = 250;
             // 
-            // scoreNumbers
-            // 
-            this.scoreNumbers.BackColor = System.Drawing.Color.Transparent;
-            this.scoreNumbers.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.scoreNumbers.Location = new System.Drawing.Point(996, -1);
-            this.scoreNumbers.Name = "scoreNumbers";
-            this.scoreNumbers.Size = new System.Drawing.Size(81, 32);
-            this.scoreNumbers.TabIndex = 4;
-            // 
             // DolditMan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(1074, 561);
-            this.Controls.Add(this.scoreNumbers);
+            this.ClientSize = new System.Drawing.Size(1074, 586);
             this.Controls.Add(this.ScoreBoard);
             this.Controls.Add(this.scoreButton);
-            this.Controls.Add(this.scoreLabel);
             this.Controls.Add(this.playButton);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -137,12 +113,10 @@
         #endregion
 
         private System.Windows.Forms.Button playButton;
-        private System.Windows.Forms.Label scoreLabel;
         private System.Windows.Forms.Button scoreButton;
         private System.Windows.Forms.DataGridView ScoreBoard;
         private System.Windows.Forms.DataGridViewTextBoxColumn NAME;
         private System.Windows.Forms.DataGridViewTextBoxColumn SCORE;
-        private System.Windows.Forms.Label scoreNumbers;
     }
 }
 
