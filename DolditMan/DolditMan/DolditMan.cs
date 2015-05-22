@@ -26,17 +26,22 @@ namespace DolditMan
         string characterImagePath = "cartman.png";
         string backgraundImagePath = "BackgraundOne.png";
         string groundImagePath = "ground.png";
+        private bool Jump;
+        private bool Fall;
+        private int count;
         private Random randomSize = new Random();
         Thread t;
         List<Ground> grounds = new List<Ground>();
         public DolditMan()
         {
+            count = 0;
+            Jump = false;
+            Fall = false;
+            this.KeyPreview = true;
             level = 10;
             InitializeComponent();
             ScoreBoard.Visible = false;
             ScoreBoard.Enabled = false;
-            stopButton.Visible = false;
-            stopButton.Enabled = false;
             score = 0;
             firstBackgroundX = 0;
             secondBackgroundX = 1090;
@@ -120,7 +125,25 @@ namespace DolditMan
                 Invalidate();
                 Thread.Sleep(Speed);
                 score += 2;
-                
+                if(Jump)
+                {
+                    characterY--;
+                    count++;
+                    if(count>=50)
+                    {
+                        Jump = false;
+                        Fall = true;
+                    }
+                    
+                }else if(Fall)
+                {
+                    characterY++;
+                    count--;
+                    if(count==0)
+                    {
+                        Fall = false;
+                    }
+                }
                 if((grounds[grounds.Count-1].X+(grounds[grounds.Count-1].Size*100))<1090)
                 {
                     Ground ground = new Ground();
@@ -144,14 +167,11 @@ namespace DolditMan
             Ground ground = new Ground();
             ground.X = 2;
             ground.Size = 20;
-            grounds[0].Start();
+            ground.Start();
             grounds.Add(ground);
             StartGame();
             playButton.Enabled = false;
             ScoreBoard.Visible = false;
-            playButton.Visible = false;
-            stopButton.Visible = true;
-            stopButton.Enabled = true;
             playButton.Visible = false;
             scoreButton.Enabled = false;
         }
@@ -206,19 +226,29 @@ namespace DolditMan
                 playButton.Enabled = true;
         }
 
-        private void stopButton_Click(object sender, EventArgs e)
-        {
-            t.Abort();
-            playButton.Enabled = true;
-            playButton.Visible = true;
-            stopButton.Visible = false;
-            stopButton.Enabled = false;
-            scoreButton.Enabled = true;
-        }
 
         private void exitButton_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+
+        private void DolditMan_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode==Keys.Up)
+            {
+                Jump = true;
+            }
+            if(e.KeyCode==Keys.Right)
+            {
+                characterX += 2;
+            }
+            if(e.KeyCode==Keys.Left && characterX>=0)
+            {
+                characterX -= 2;
+            }
+            e.Handled = false;
+            Invalidate();
+        }
+
     }
 }
