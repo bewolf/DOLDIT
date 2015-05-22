@@ -163,7 +163,6 @@ namespace DolditMan
             {
                 canvas.DrawImage(backgraundImage, firstBackgroundX, 28, 1090, 560);
                 canvas.DrawImage(backgraundImage, secondBackgroundX, 28, 1090, 560);
-
             }
             using (characterImage)
             {
