@@ -50,6 +50,7 @@
     <Compile Include="DolditMan.Designer.cs">
       <DependentUpon>DolditMan.cs</DependentUpon>
     </Compile>
+    <Compile Include="Ground.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="DolditMan.resx">
@@ -86,6 +87,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Full.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ground.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

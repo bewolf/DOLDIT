@@ -19,3 +19,4 @@ E:\Programing\C#ADVANCETEAMWORK\DOLDIT\DolditMan\DolditMan\obj\Debug\DolditMan.P
 E:\Programing\C#ADVANCETEAMWORK\DOLDIT\DolditMan\DolditMan\obj\Debug\DolditMan.csproj.GenerateResource.Cache
 D:\Learning\SoftUni\SoftUniGitHub\DOLDIT\trunk\DolditMan\DolditMan\bin\Debug\Full.png
 E:\Programing\C#ADVANCETEAMWORK\DOLDIT\DolditMan\DolditMan\bin\Debug\Brick_Block.png
+E:\Programing\C#ADVANCETEAMWORK\DOLDIT\DolditMan\DolditMan\bin\Debug\ground.png

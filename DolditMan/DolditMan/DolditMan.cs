@@ -16,19 +16,20 @@ namespace DolditMan
     {
 
         private int score;
-        private int X1;
-        private int X2;
+        private int firstBackgroundX;
+        private int secondBackgroundX;
         private int X3;
         private int Speed;
         Thread t;
+        List<Ground> grounds = new List<Ground>();
         public DolditMan()
         {
             InitializeComponent();
             ScoreBoard.Visible = false;
             ScoreBoard.Enabled = false;
             score = 0;
-            X1 = 0;
-            X2 = 1090;
+            firstBackgroundX = 0;
+            secondBackgroundX = 1090;
             X3 = 1000;
             Speed = 20;
             
@@ -92,22 +93,20 @@ namespace DolditMan
             while (true)
             {
                 
-                if (X1 == -1090)
+                if (firstBackgroundX == -1090)
                 {
-                    X1 = 1090;
+                    firstBackgroundX = 1090;
                 }
-                if (X2 == -1090)
+                if (secondBackgroundX == -1090)
                 {
-                    X2 = 1090;
+                    secondBackgroundX = 1090;
                 }
-                X1 -= 1;
-                X2 -= 1;
+                firstBackgroundX -= 1;
+                secondBackgroundX -= 1;
                 X3 -= 1;
                 Invalidate();
                 Thread.Sleep(Speed);
                 score += 2;
-               
-                
             }
             
         }
@@ -118,11 +117,15 @@ namespace DolditMan
 
         private void playButton_Click(object sender, EventArgs e)
         {
+            grounds.Clear();
+            Ground ground = new Ground();
+            ground.X = 500;
+            ground.Size = 10;
+            ground.Start();
+            grounds.Add(ground);
             StartGame();
             playButton.Enabled = false;
-            ScoreBoard.Visible = false;
-
-                
+            ScoreBoard.Visible = false;      
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -135,24 +138,36 @@ namespace DolditMan
             Graphics canvas = e.Graphics;
             using (var image = new Bitmap("Full.png"))
             {
-                canvas.DrawImage(image, X1, 28, 1090, 560);
-                canvas.DrawImage(image, X2, 28, 1090, 560);
-  
+                canvas.DrawImage(image, firstBackgroundX, 28, 1090, 560);
+                canvas.DrawImage(image, secondBackgroundX, 28, 1090, 560);
+
             }
-            using (var image = new Bitmap("Brick_Block.png"))
+            using (var image = new Bitmap("ground.png"))
             {
-                canvas.DrawImage(image, X3, 500, 40, 40);
-                canvas.DrawImage(image, X3, 540, 40, 40);
-                canvas.DrawImage(image, X3, 580, 40, 40);
+
+
+
+                foreach (var block in grounds)
+                {
+                    if (block.X + block.Size*100> 0)
+                    {
+                        Rectangle destRect = new Rectangle(block.X, 530, block.Size * 100, 100);
+                        Rectangle srcRect = new Rectangle(0, 0, block.Size*100, 65);
+                        GraphicsUnit units = GraphicsUnit.Pixel;
+                        canvas.DrawImage(image, destRect, srcRect, units);
+                    }
+                }
             }
-            
-            
         }
         
 
         private void scoreButton_Click(object sender, EventArgs e)
         {
             t.Abort();
+            foreach(var ground in grounds)
+            {
+                ground.Stop();
+            }
             if (!t.IsAlive)
             {
                 ScoreBoard.Visible = true;
