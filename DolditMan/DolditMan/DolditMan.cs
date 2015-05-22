@@ -21,6 +21,9 @@ namespace DolditMan
         private int Speed;
         private string username;
         private int level;
+        string characterImagePath = "cartman.png";
+        string backgraundImagePath = "BackgraundOne.png";
+        string groundImagePath = "ground.png";
         private Random randomSize = new Random();
         Thread t;
         List<Ground> grounds = new List<Ground>();
@@ -153,13 +156,20 @@ namespace DolditMan
         private void DolditMan_Paint(object sender, PaintEventArgs e)
         {
             Graphics canvas = e.Graphics;
-            using (var image = new Bitmap("BackgraundOne.png"))
+            var backgraundImage = new Bitmap(backgraundImagePath);
+            var groundImage = new Bitmap(groundImagePath);
+            var characterImage = new Bitmap(characterImagePath);
+            using (backgraundImage)
             {
-                canvas.DrawImage(image, firstBackgroundX, 28, 1090, 560);
-                canvas.DrawImage(image, secondBackgroundX, 28, 1090, 560);
+                canvas.DrawImage(backgraundImage, firstBackgroundX, 28, 1090, 560);
+                canvas.DrawImage(backgraundImage, secondBackgroundX, 28, 1090, 560);
 
             }
-            using (var image = new Bitmap("ground.png"))
+            using (characterImage)
+            {
+                canvas.DrawImage(characterImage, 30 , 465, 65, 65);
+            }
+            using (groundImage)
             {
                 foreach (var block in grounds)
                 {
@@ -168,7 +178,7 @@ namespace DolditMan
                         Rectangle destRect = new Rectangle(block.X, 530, block.Size * 100, 100);
                         Rectangle srcRect = new Rectangle(0, 0, block.Size*100, 65);
                         GraphicsUnit units = GraphicsUnit.Pixel;
-                        canvas.DrawImage(image, destRect, srcRect, units);
+                        canvas.DrawImage(groundImage, destRect, srcRect, units);
                     }
                 }
             }

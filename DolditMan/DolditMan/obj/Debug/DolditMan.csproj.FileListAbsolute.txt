@@ -21,3 +21,4 @@ D:\Learning\SoftUni\SoftUniGitHub\DOLDIT\trunk\DolditMan\DolditMan\bin\Debug\Ful
 E:\Programing\C#ADVANCETEAMWORK\DOLDIT\DolditMan\DolditMan\bin\Debug\Brick_Block.png
 E:\Programing\C#ADVANCETEAMWORK\DOLDIT\DolditMan\DolditMan\bin\Debug\ground.png
 E:\Programing\C#ADVANCETEAMWORK\DOLDIT\DolditMan\DolditMan\bin\Debug\BackgraundOne.png
+E:\Programing\C#ADVANCETEAMWORK\DOLDIT\DolditMan\DolditMan\bin\Debug\cartman.png
