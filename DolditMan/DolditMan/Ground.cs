@@ -12,6 +12,7 @@ namespace DolditMan
         public int X { get; set; }
         public int Size { get; set; }
         Thread t;
+        public int Speed { get; set; }
         public void Start()
         {
             t = new Thread(new ThreadStart(Move));
@@ -22,7 +23,7 @@ namespace DolditMan
             while (X+Size*100>0)
             {
                 X -= 1;
-                Thread.Sleep(10);
+                Thread.Sleep(Speed);
             }
         }
         public void Stop()

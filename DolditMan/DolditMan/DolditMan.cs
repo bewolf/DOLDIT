@@ -18,9 +18,10 @@ namespace DolditMan
         private int score;
         private int firstBackgroundX;
         private int secondBackgroundX;
-        private int Speed;
         private string username;
         private int level;
+        private int levelTimer;
+        private int levelUp;
         string characterImagePath = "cartman.png";
         string backgraundImagePath = "BackgraundOne.png";
         string groundImagePath = "ground.png";
@@ -36,6 +37,7 @@ namespace DolditMan
         List<Ground> grounds = new List<Ground>();
         public DolditMan()
         {
+            
             JumpHigh = 0;
             MovingLeft = MovingRight = JumpUP = JumpDown = false;
             this.KeyPreview = true;
@@ -46,7 +48,6 @@ namespace DolditMan
             score = 0;
             firstBackgroundX = 0;
             secondBackgroundX = 1090;
-            Speed = 20;
             CharacterCreation();
             GAMEOVER = true;
         }
@@ -57,6 +58,8 @@ namespace DolditMan
         }
         public void StartGame()
         {
+            levelTimer = 0;
+            levelUp = 1500;
             t = new Thread(new ThreadStart(Gameplay));
             t.Start();
             t2 = new Thread(new ThreadStart(Movements));
@@ -127,18 +130,34 @@ namespace DolditMan
                 firstBackgroundX -= 1;
                 secondBackgroundX -= 1;
                 Invalidate();
-                Thread.Sleep(Speed);
+                if(character.X>0)
+                {
+                    character.X -= 1;
+                }
+                Thread.Sleep(level*2);
                 if (GAMEOVER)
                 {
-                    score += 2;
+                    score++;
+                    levelTimer++;
                 }
                 if((grounds[grounds.Count-1].X+(grounds[grounds.Count-1].Size*100))<1090)
                 {
                     Ground ground = new Ground();
                     ground.X = 1200;
-                    ground.Size = randomSize.Next(1,level);
+                    ground.Size = randomSize.Next(1,level+2);
+                    ground.Speed = level;
                     ground.Start();
                     grounds.Add(ground);
+                }
+                if(levelTimer>=levelUp && level > 2)
+                {
+                    levelUp *= 2;
+                    level--;
+                    levelTimer = 0;
+                    foreach (var item in grounds)
+                    {
+                        item.Speed = level;
+                    }
                 }
             }
             
@@ -162,6 +181,7 @@ namespace DolditMan
                 Ground ground = new Ground();
                 ground.X = 2;
                 ground.Size = 20;
+                ground.Speed = level;
                 ground.Start();
                 grounds.Add(ground);
                 StartGame();
@@ -288,11 +308,11 @@ namespace DolditMan
 
                 if (MovingLeft && character.X >= 0)
                 {
-                    character.X -= 2;
+                    character.X -= 1;
                 }
                 if(MovingRight)
                 {
-                    character.X += 2;
+                    character.X += 3;
                 }
                 if (JumpUP)
                 {
