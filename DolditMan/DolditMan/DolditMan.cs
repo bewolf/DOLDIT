@@ -27,6 +27,8 @@ namespace DolditMan
         private bool JumpUP;
         private bool JumpDown;
         private int JumpHigh;
+        private bool MovingLeft;
+        private bool MovingRight;
         private Random randomSize = new Random();
         Character character = new Character();
         Thread t;
@@ -35,8 +37,7 @@ namespace DolditMan
         public DolditMan()
         {
             JumpHigh = 0;
-            JumpUP = false;
-            JumpDown = false;
+            MovingLeft = MovingRight = JumpUP = JumpDown = false;
             this.KeyPreview = true;
             level = 10;
             InitializeComponent();
@@ -55,8 +56,10 @@ namespace DolditMan
         }
         public void StartGame()
         {
-            t = new Thread(new ThreadStart(BackgroundMove));
+            t = new Thread(new ThreadStart(Gameplay));
             t.Start();
+            t2 = new Thread(new ThreadStart(Movements));
+            t2.Start();
         }
         private void ScoreTableSettings()
         {
@@ -107,7 +110,7 @@ namespace DolditMan
              } while (!bubbleSortComplete);
 
          }
-        private void BackgroundMove() //Metoda s koito dvijim bakcgrounda
+        private void Gameplay() //Metoda s koito dvijim bakcgrounda
         {
             while (true)
             {
@@ -125,25 +128,6 @@ namespace DolditMan
                 Invalidate();
                 Thread.Sleep(Speed);
                 score += 2;
-                if(JumpUP)
-                {
-                    character.Y-=2;
-                    JumpHigh++;
-                    if(JumpHigh>=25)
-                    {
-                        JumpUP = false;
-                        JumpDown = true;
-                    }
-                    
-                }else if(JumpDown)
-                {
-                    character.Y+=2;
-                    JumpHigh--;
-                    if(JumpHigh==0)
-                    {
-                        JumpDown = false;
-                    }
-                }
                 if((grounds[grounds.Count-1].X+(grounds[grounds.Count-1].Size*100))<1090)
                 {
                     Ground ground = new Ground();
@@ -241,35 +225,36 @@ namespace DolditMan
 
         private void DolditMan_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode==Keys.Up && JumpUP==false && JumpDown ==false)
+            if (e.KeyCode == Keys.Up && JumpUP == false && JumpDown == false)
             {
                 JumpUP = true;
             }
             if (e.KeyCode == Keys.Right)
             {
-                if(JumpUP == false && JumpDown == false)
-                    character.X += 4;
-                else
-                    character.X += 4;
+                MovingRight = true;
             }
-            if (e.KeyCode == Keys.Left && character.X >= 0)
+            if (e.KeyCode == Keys.Left)
             {
-                if(JumpUP == false && JumpDown == false)
-                    character.X -= 4;
-                else
-                    character.X -= 4;
+                MovingLeft = true;
             }
-            e.Handled = false;
+
+          
+    
             Invalidate();
         }
-        private void Jump()
+        private void Movements()
         {
-            t2 = new Thread(new ThreadStart(Jumping));
-        }
-        private void Jumping()
-        {
-            while (JumpUP || JumpDown)
+            while (true)
             {
+
+                if (MovingLeft && character.X >= 0)
+                {
+                    character.X -= 2;
+                }
+                if(MovingRight)
+                {
+                    character.X += 2;
+                }
                 if (JumpUP)
                 {
                     character.Y -= 2;
@@ -291,6 +276,18 @@ namespace DolditMan
                     }
                 }
                 Thread.Sleep(15);
+            }
+        }
+
+        private void DolditMan_KeyUp(object sender, KeyEventArgs e)
+        {
+            if(Keys.Left == e.KeyCode)
+            {
+                MovingLeft = false;
+            }
+            if(Keys.Right == e.KeyCode)
+            {
+                MovingRight = false;
             }
         }
 
