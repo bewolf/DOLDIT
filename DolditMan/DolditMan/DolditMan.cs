@@ -157,6 +157,7 @@ namespace DolditMan
             }
             else
             {
+                CharacterCreation();
                 grounds.Clear();
                 Ground ground = new Ground();
                 ground.X = 2;
@@ -213,6 +214,9 @@ namespace DolditMan
                 scoreLabel.Visible = true;
                 yourScoreLabel.Visible = true;
                 yourScoreLabel.Text = score.ToString();
+                playButton.Enabled = true;
+                scoreButton.Enabled = true;
+                usernameTextBox.Enabled = true;
             }
         }
         
@@ -259,7 +263,8 @@ namespace DolditMan
                 GAMEOVER = false;
                 for (int i = 0; i < grounds.Count; i++)
                 {
-                   GAMEOVER= GAMEOVER || !(!(character.X >= grounds[i].X && character.X <= grounds[i].X + grounds[i].Size * 100) && character.Y == 465);
+                   GAMEOVER= GAMEOVER || !(!((character.X >= grounds[i].X || character.X+65 > grounds[i].X)
+                       && character.X < grounds[i].X + grounds[i].Size * 100) && character.Y == 465);
                 }
                 if(!GAMEOVER)
                 {
