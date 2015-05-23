@@ -14,7 +14,7 @@ namespace DolditMan
 {
     public partial class DolditMan : Form
     {
-
+        private bool GAMEOVER;
         private int score;
         private int firstBackgroundX;
         private int secondBackgroundX;
@@ -48,6 +48,7 @@ namespace DolditMan
             secondBackgroundX = 1090;
             Speed = 20;
             CharacterCreation();
+            GAMEOVER = false;
         }
         public void CharacterCreation()
         {
@@ -205,10 +206,6 @@ namespace DolditMan
 
         private void scoreButton_Click(object sender, EventArgs e)
         {
-            foreach(var ground in grounds)
-            {
-                ground.Stop();
-            }
                 ScoreBoard.Visible = true;
                 ScoreBoard.Enabled = true;
                 ScoreBoard.Rows.Clear();
@@ -246,6 +243,25 @@ namespace DolditMan
         {
             while (true)
             {
+                GAMEOVER = false;
+                for (int i = 0; i < grounds.Count; i++)
+                {
+                   GAMEOVER= GAMEOVER || !(!(character.X >= grounds[i].X && character.X <= grounds[i].X + grounds[i].Size * 100) && character.Y == 465);
+                }
+                if(!GAMEOVER)
+                {
+                    while(character.Y<625)
+                    {
+                        character.Y++;
+                        Thread.Sleep(10);
+                    }
+                    t.Abort();
+                    t2.Abort();
+                    foreach(var ground in grounds)
+                    {
+                        ground.Stop();
+                    }
+                }
 
                 if (MovingLeft && character.X >= 0)
                 {
