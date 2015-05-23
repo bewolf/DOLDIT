@@ -38,6 +38,8 @@
             this.gameOverLabel = new System.Windows.Forms.Label();
             this.scoreLabel = new System.Windows.Forms.Label();
             this.yourScoreLabel = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.characterSelection = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.ScoreBoard)).BeginInit();
             this.SuspendLayout();
             // 
@@ -57,7 +59,7 @@
             // scoreButton
             // 
             this.scoreButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.scoreButton.Location = new System.Drawing.Point(432, -2);
+            this.scoreButton.Location = new System.Drawing.Point(453, -2);
             this.scoreButton.Name = "scoreButton";
             this.scoreButton.Size = new System.Drawing.Size(96, 24);
             this.scoreButton.TabIndex = 2;
@@ -74,7 +76,7 @@
             this.SCORE});
             this.ScoreBoard.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ScoreBoard.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.ScoreBoard.Location = new System.Drawing.Point(257, 29);
+            this.ScoreBoard.Location = new System.Drawing.Point(221, 29);
             this.ScoreBoard.Name = "ScoreBoard";
             this.ScoreBoard.Size = new System.Drawing.Size(544, 520);
             this.ScoreBoard.TabIndex = 3;
@@ -146,11 +148,40 @@
             this.yourScoreLabel.TabIndex = 9;
             this.yourScoreLabel.Visible = false;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(254, 5);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(66, 13);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Character:";
+            // 
+            // characterSelection
+            // 
+            this.characterSelection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.characterSelection.FormattingEnabled = true;
+            this.characterSelection.Items.AddRange(new object[] {
+            "Cartman",
+            "Kenny",
+            "Kylle",
+            "Chef",
+            "Stan",
+            "Wendy"});
+            this.characterSelection.Location = new System.Drawing.Point(326, 2);
+            this.characterSelection.Name = "characterSelection";
+            this.characterSelection.Size = new System.Drawing.Size(121, 21);
+            this.characterSelection.TabIndex = 11;
+            this.characterSelection.SelectedIndexChanged += new System.EventHandler(this.characterSelection_SelectedIndexChanged);
+            // 
             // DolditMan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1074, 586);
+            this.Controls.Add(this.characterSelection);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.yourScoreLabel);
             this.Controls.Add(this.scoreLabel);
             this.Controls.Add(this.gameOverLabel);
@@ -186,6 +217,8 @@
         private System.Windows.Forms.Label gameOverLabel;
         private System.Windows.Forms.Label scoreLabel;
         private System.Windows.Forms.Label yourScoreLabel;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox characterSelection;
     }
 }
 

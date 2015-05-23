@@ -22,9 +22,9 @@ namespace DolditMan
         private int level;
         private int levelTimer;
         private int levelUp;
-        string characterImagePath = "cartman.png";
         string backgraundImagePath = "BackgraundOne.png";
         string groundImagePath = "ground.png";
+        string characterName = "Characters/cartman.png";
         private bool JumpUP;
         private bool JumpDown;
         private int JumpHigh;
@@ -48,11 +48,14 @@ namespace DolditMan
             score = 0;
             firstBackgroundX = 0;
             secondBackgroundX = 1090;
-            CharacterCreation();
+            character.X = 30;
+            character.Y = 465;
             GAMEOVER = true;
         }
         public void CharacterCreation()
         {
+            characterName = character.ChosenCharacter(characterSelection.SelectedItem.ToString());
+            characterSelection.Enabled = false;
             character.X = 30;
             character.Y = 465;
         }
@@ -151,7 +154,7 @@ namespace DolditMan
                 }
                 if(levelTimer>=levelUp && level > 2)
                 {
-                    levelUp *= 2;
+                    levelUp += 2000;
                     level--;
                     levelTimer = 0;
                     foreach (var item in grounds)
@@ -173,9 +176,14 @@ namespace DolditMan
             if (username == null || username == "")
             {
                 MessageBox.Show("Enter your name.", "NAME NOT FOUND");
+            }else if(characterSelection.SelectedItem==null)
+            {
+                MessageBox.Show("Choose your character!");
             }
+              
             else
             {
+
                 CharacterCreation();
                 grounds.Clear();
                 Ground ground = new Ground();
@@ -202,10 +210,11 @@ namespace DolditMan
 
         private void DolditMan_Paint(object sender, PaintEventArgs e)
         {
+            
             Graphics canvas = e.Graphics;
             var backgraundImage = new Bitmap(backgraundImagePath);
             var groundImage = new Bitmap(groundImagePath);
-            var characterImage = new Bitmap(characterImagePath);
+            var characterImage = new Bitmap(characterName);
             using (backgraundImage)
             {
                 canvas.DrawImage(backgraundImage, firstBackgroundX, 28, 1090, 560);
@@ -237,6 +246,7 @@ namespace DolditMan
                 playButton.Enabled = true;
                 scoreButton.Enabled = true;
                 usernameTextBox.Enabled = true;
+                characterSelection.Enabled = true;
             }
         }
         
@@ -294,9 +304,6 @@ namespace DolditMan
                         Thread.Sleep(10);
                     }
                     t.Abort();
-                    //scoreLabel.Visible = true;
-                    //yourScoreLabel.Visible = true;
-                    //;
                     t2.Abort();
            
                     foreach(var ground in grounds)
@@ -310,7 +317,7 @@ namespace DolditMan
                 {
                     character.X -= 1;
                 }
-                if(MovingRight)
+                if(MovingRight && character.X <=1090)
                 {
                     character.X += 3;
                 }
@@ -348,6 +355,11 @@ namespace DolditMan
             {
                 MovingRight = false;
             }
+        }
+
+        private void characterSelection_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }
