@@ -48,7 +48,7 @@ namespace DolditMan
             secondBackgroundX = 1090;
             Speed = 20;
             CharacterCreation();
-            GAMEOVER = false;
+            GAMEOVER = true;
         }
         public void CharacterCreation()
         {
@@ -128,7 +128,10 @@ namespace DolditMan
                 secondBackgroundX -= 1;
                 Invalidate();
                 Thread.Sleep(Speed);
-                score += 2;
+                if (GAMEOVER)
+                {
+                    score += 2;
+                }
                 if((grounds[grounds.Count-1].X+(grounds[grounds.Count-1].Size*100))<1090)
                 {
                     Ground ground = new Ground();
@@ -165,6 +168,9 @@ namespace DolditMan
                 ScoreBoard.Visible = false;
                 scoreButton.Enabled = false;
                 usernameTextBox.Enabled = false;
+                yourScoreLabel.Visible = false;
+                scoreLabel.Visible = false;
+                gameOverLabel.Visible = false;
             }
         }
 
@@ -200,6 +206,13 @@ namespace DolditMan
                         canvas.DrawImage(groundImage, destRect, srcRect, units);
                     }
                 }
+            }
+            if(!GAMEOVER)
+            {
+                gameOverLabel.Visible = true;
+                scoreLabel.Visible = true;
+                yourScoreLabel.Visible = true;
+                yourScoreLabel.Text = score.ToString();
             }
         }
         
@@ -250,17 +263,22 @@ namespace DolditMan
                 }
                 if(!GAMEOVER)
                 {
-                    while(character.Y<625)
+                    while(character.Y<550)
                     {
                         character.Y++;
                         Thread.Sleep(10);
                     }
                     t.Abort();
+                    //scoreLabel.Visible = true;
+                    //yourScoreLabel.Visible = true;
+                    //;
                     t2.Abort();
+           
                     foreach(var ground in grounds)
                     {
                         ground.Stop();
                     }
+                 
                 }
 
                 if (MovingLeft && character.X >= 0)
@@ -306,6 +324,5 @@ namespace DolditMan
                 MovingRight = false;
             }
         }
-
     }
 }

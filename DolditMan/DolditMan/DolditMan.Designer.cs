@@ -35,6 +35,9 @@
             this.SCORE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userLabel = new System.Windows.Forms.Label();
             this.usernameTextBox = new System.Windows.Forms.TextBox();
+            this.gameOverLabel = new System.Windows.Forms.Label();
+            this.scoreLabel = new System.Windows.Forms.Label();
+            this.yourScoreLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.ScoreBoard)).BeginInit();
             this.SuspendLayout();
             // 
@@ -108,11 +111,49 @@
             this.usernameTextBox.Size = new System.Drawing.Size(100, 20);
             this.usernameTextBox.TabIndex = 6;
             // 
+            // gameOverLabel
+            // 
+            this.gameOverLabel.AutoSize = true;
+            this.gameOverLabel.BackColor = System.Drawing.Color.Transparent;
+            this.gameOverLabel.Font = new System.Drawing.Font("Showcard Gothic", 48F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gameOverLabel.Location = new System.Drawing.Point(319, 130);
+            this.gameOverLabel.Name = "gameOverLabel";
+            this.gameOverLabel.Size = new System.Drawing.Size(393, 79);
+            this.gameOverLabel.TabIndex = 7;
+            this.gameOverLabel.Text = "GAME OVER";
+            this.gameOverLabel.Visible = false;
+            // 
+            // scoreLabel
+            // 
+            this.scoreLabel.AutoSize = true;
+            this.scoreLabel.BackColor = System.Drawing.Color.Transparent;
+            this.scoreLabel.Font = new System.Drawing.Font("Showcard Gothic", 36F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.scoreLabel.Location = new System.Drawing.Point(193, 248);
+            this.scoreLabel.Name = "scoreLabel";
+            this.scoreLabel.Size = new System.Drawing.Size(344, 60);
+            this.scoreLabel.TabIndex = 8;
+            this.scoreLabel.Text = "YOUR SCORE:";
+            this.scoreLabel.Visible = false;
+            // 
+            // yourScoreLabel
+            // 
+            this.yourScoreLabel.AutoSize = true;
+            this.yourScoreLabel.BackColor = System.Drawing.Color.Transparent;
+            this.yourScoreLabel.Font = new System.Drawing.Font("Showcard Gothic", 36F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.yourScoreLabel.Location = new System.Drawing.Point(601, 248);
+            this.yourScoreLabel.Name = "yourScoreLabel";
+            this.yourScoreLabel.Size = new System.Drawing.Size(0, 60);
+            this.yourScoreLabel.TabIndex = 9;
+            this.yourScoreLabel.Visible = false;
+            // 
             // DolditMan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1074, 586);
+            this.Controls.Add(this.yourScoreLabel);
+            this.Controls.Add(this.scoreLabel);
+            this.Controls.Add(this.gameOverLabel);
             this.Controls.Add(this.usernameTextBox);
             this.Controls.Add(this.userLabel);
             this.Controls.Add(this.ScoreBoard);
@@ -142,6 +183,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn SCORE;
         private System.Windows.Forms.Label userLabel;
         private System.Windows.Forms.TextBox usernameTextBox;
+        private System.Windows.Forms.Label gameOverLabel;
+        private System.Windows.Forms.Label scoreLabel;
+        private System.Windows.Forms.Label yourScoreLabel;
     }
 }
 
