@@ -18,25 +18,25 @@ namespace DolditMan
         private int score;
         private int firstBackgroundX;
         private int secondBackgroundX;
-        private int characterX;
-        private int characterY;
         private int Speed;
         private string username;
         private int level;
         string characterImagePath = "cartman.png";
         string backgraundImagePath = "BackgraundOne.png";
         string groundImagePath = "ground.png";
-        private bool Jump;
-        private bool Fall;
-        private int count;
+        private bool JumpUP;
+        private bool JumpDown;
+        private int JumpHigh;
         private Random randomSize = new Random();
+        Character character = new Character();
         Thread t;
+        Thread t2;
         List<Ground> grounds = new List<Ground>();
         public DolditMan()
         {
-            count = 0;
-            Jump = false;
-            Fall = false;
+            JumpHigh = 0;
+            JumpUP = false;
+            JumpDown = false;
             this.KeyPreview = true;
             level = 10;
             InitializeComponent();
@@ -50,8 +50,8 @@ namespace DolditMan
         }
         public void CharacterCreation()
         {
-            characterX = 30;
-            characterY = 465;
+            character.X = 30;
+            character.Y = 465;
         }
         public void StartGame()
         {
@@ -125,23 +125,23 @@ namespace DolditMan
                 Invalidate();
                 Thread.Sleep(Speed);
                 score += 2;
-                if(Jump)
+                if(JumpUP)
                 {
-                    characterY-=2;
-                    count++;
-                    if(count>=25)
+                    character.Y-=2;
+                    JumpHigh++;
+                    if(JumpHigh>=25)
                     {
-                        Jump = false;
-                        Fall = true;
+                        JumpUP = false;
+                        JumpDown = true;
                     }
                     
-                }else if(Fall)
+                }else if(JumpDown)
                 {
-                    characterY+=2;
-                    count--;
-                    if(count==0)
+                    character.Y+=2;
+                    JumpHigh--;
+                    if(JumpHigh==0)
                     {
-                        Fall = false;
+                        JumpDown = false;
                     }
                 }
                 if((grounds[grounds.Count-1].X+(grounds[grounds.Count-1].Size*100))<1090)
@@ -201,16 +201,16 @@ namespace DolditMan
             }
             using (characterImage)
             {
-                canvas.DrawImage(characterImage, characterX , characterY, 65, 65);
+                canvas.DrawImage(characterImage, character.X , character.Y, 65, 65);
             }
             using (groundImage)
             {
-                foreach (var block in grounds)
+                for (int i = 0; i < grounds.Count; i++)
                 {
-                    if (block.X + block.Size*100 > 0)
+                    if (grounds[i].X + grounds[i].Size * 100 > 0)
                     {
-                        Rectangle destRect = new Rectangle(block.X, 530, block.Size*100, 100);
-                        Rectangle srcRect = new Rectangle(0, 0, block.Size*15, 65);
+                        Rectangle destRect = new Rectangle(grounds[i].X, 530, grounds[i].Size * 100, 100);
+                        Rectangle srcRect = new Rectangle(0, 0, grounds[i].Size * 15, 65);
                         GraphicsUnit units = GraphicsUnit.Pixel;
                         canvas.DrawImage(groundImage, destRect, srcRect, units);
                     }
@@ -241,26 +241,57 @@ namespace DolditMan
 
         private void DolditMan_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode==Keys.Up && Jump==false && Fall ==false)
+            if(e.KeyCode==Keys.Up && JumpUP==false && JumpDown ==false)
             {
-                Jump = true;
+                JumpUP = true;
             }
             if (e.KeyCode == Keys.Right)
             {
-                if(Jump == false && Fall == false)
-                    characterX += 4;
+                if(JumpUP == false && JumpDown == false)
+                    character.X += 4;
                 else
-                    characterX += 4;
+                    character.X += 4;
             }
-            if (e.KeyCode == Keys.Left && characterX >= 0)
+            if (e.KeyCode == Keys.Left && character.X >= 0)
             {
-                if(Jump == false && Fall == false)
-                    characterX -= 4;
+                if(JumpUP == false && JumpDown == false)
+                    character.X -= 4;
                 else
-                    characterX -= 4;
+                    character.X -= 4;
             }
             e.Handled = false;
             Invalidate();
+        }
+        private void Jump()
+        {
+            t2 = new Thread(new ThreadStart(Jumping));
+        }
+        private void Jumping()
+        {
+            while (JumpUP || JumpDown)
+            {
+                if (JumpUP)
+                {
+                    character.Y -= 2;
+                    JumpHigh++;
+                    if (JumpHigh >= 25)
+                    {
+                        JumpUP = false;
+                        JumpDown = true;
+                    }
+
+                }
+                else if (JumpDown)
+                {
+                    character.Y += 2;
+                    JumpHigh--;
+                    if (JumpHigh == 0)
+                    {
+                        JumpDown = false;
+                    }
+                }
+                Thread.Sleep(15);
+            }
         }
 
     }
