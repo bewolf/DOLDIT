@@ -37,14 +37,13 @@ namespace DolditMan
         List<Ground> grounds = new List<Ground>();
         public DolditMan()
         {
-            
             JumpHigh = 0;
             MovingLeft = MovingRight = JumpUP = JumpDown = false;
             this.KeyPreview = true;
-            level = 10;
             InitializeComponent();
             ScoreBoard.Visible = false;
             ScoreBoard.Enabled = false;
+            level = 10;
             score = 0;
             firstBackgroundX = 0;
             secondBackgroundX = 1090;
@@ -63,6 +62,8 @@ namespace DolditMan
         {
             levelTimer = 0;
             levelUp = 1500;
+            level = 10;
+            score = 0;
             t = new Thread(new ThreadStart(Gameplay));
             t.Start();
             t2 = new Thread(new ThreadStart(Movements));
@@ -75,7 +76,7 @@ namespace DolditMan
                 ScoreBoard.Rows.Add(item);
             }
         }
-         private static List<string[]> ReadScore()
+        private static List<string[]> ReadScore()
         {
             List<string[]> scoreResault = new List<string[]>();
             StreamReader reader = new StreamReader("Score.txt");
@@ -94,10 +95,22 @@ namespace DolditMan
                 }
                 
             }
-            BubbleSort(scoreResault);
+            if (scoreResault.Count > 1)
+            {
+                BubbleSort(scoreResault);
+            }
             return scoreResault;
         }
-         private static void BubbleSort(List<string[]> list)
+        public void WriteScores()
+         {
+            string name = usernameTextBox.Text;
+             StreamWriter writer = new StreamWriter("Score.txt",true);
+             using (writer)
+             {
+                 writer.WriteLine(name + " " + score);
+             }
+         }
+        private static void BubbleSort(List<string[]> list)
          {
              string[] stringSwaping = new string[2];
              bool bubbleSortComplete = true;
@@ -106,7 +119,8 @@ namespace DolditMan
                  bubbleSortComplete = true;
                  for (int i = 0; i < list.Count - 1; i++)
                  {
-                     if (int.Parse(list[i][1]) < int.Parse(list[i + 1][1]))
+                     if (list[i].Length>1 && list[i+1].Length>1
+                         && int.Parse(list[i][1]) < int.Parse(list[i + 1][1]))
                      {
                          stringSwaping = list[i];
                          list[i] = list[i + 1];
@@ -117,7 +131,7 @@ namespace DolditMan
              } while (!bubbleSortComplete);
 
          }
-        private void Gameplay() //Metoda s koito dvijim bakcgrounda
+        private void Gameplay() 
         {
             while (true)
             {
@@ -143,33 +157,39 @@ namespace DolditMan
                     score++;
                     levelTimer++;
                 }
-                if((grounds[grounds.Count-1].X+(grounds[grounds.Count-1].Size*100))<1090)
+                AddGround();
+                ChangeLevelDificulty();
+            }
+        }
+        private void ChangeLevelDificulty()
+        {
+            if (levelTimer >= levelUp && level > 2)
+            {
+                levelUp += 1000;
+                level--;
+                levelTimer = 0;
+                foreach (var ground in grounds)
                 {
-                    Ground ground = new Ground();
-                    ground.X = 1200;
-                    ground.Size = randomSize.Next(1,level+2);
                     ground.Speed = level;
-                    ground.Start();
-                    grounds.Add(ground);
-                }
-                if(levelTimer>=levelUp && level > 2)
-                {
-                    levelUp += 2000;
-                    level--;
-                    levelTimer = 0;
-                    foreach (var item in grounds)
-                    {
-                        item.Speed = level;
-                    }
                 }
             }
-            
+        }
+        private void AddGround()
+        {
+            if ((grounds[grounds.Count - 1].X + (grounds[grounds.Count - 1].Size * 100)) < 1090)
+            {
+                Ground ground = new Ground();
+                ground.X = 1200;
+                ground.Size = randomSize.Next(1, level + 2);
+                ground.Speed = level;
+                ground.Start();
+                grounds.Add(ground);
+            }
         }
         private void Form1_Load(object sender, EventArgs e)
         {
 
         }
-
         private void playButton_Click(object sender, EventArgs e)
         {
             username = usernameTextBox.Text; 
@@ -180,7 +200,6 @@ namespace DolditMan
             {
                 MessageBox.Show("Choose your character!");
             }
-              
             else
             {
 
@@ -202,12 +221,6 @@ namespace DolditMan
                 gameOverLabel.Visible = false;
             }
         }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-            // Не пишете нищо
-        }
-
         private void DolditMan_Paint(object sender, PaintEventArgs e)
         {
             
@@ -237,7 +250,11 @@ namespace DolditMan
                     }
                 }
             }
-            if(!GAMEOVER)
+            StopTheGame();
+        }
+        public void StopTheGame()
+        {
+            if (!GAMEOVER)
             {
                 gameOverLabel.Visible = true;
                 scoreLabel.Visible = true;
@@ -249,10 +266,9 @@ namespace DolditMan
                 characterSelection.Enabled = true;
             }
         }
-        
-
         private void scoreButton_Click(object sender, EventArgs e)
         {
+                ScoreBoard.BringToFront();
                 ScoreBoard.Visible = true;
                 ScoreBoard.Enabled = true;
                 ScoreBoard.Rows.Clear();
@@ -260,13 +276,6 @@ namespace DolditMan
                 ScoreTableSettings();
                 playButton.Enabled = true;
         }
-
-
-        private void exitButton_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void DolditMan_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Up && JumpUP == false && JumpDown == false)
@@ -281,38 +290,14 @@ namespace DolditMan
             {
                 MovingLeft = true;
             }
-
-          
-    
             Invalidate();
         }
-        private void Movements()
+        private void Movements() 
         {
             while (true)
             {
                 GAMEOVER = false;
-                for (int i = 0; i < grounds.Count; i++)
-                {
-                   GAMEOVER= GAMEOVER || !(!((character.X >= grounds[i].X || character.X+65 > grounds[i].X)
-                       && character.X < grounds[i].X + grounds[i].Size * 100) && character.Y == 465);
-                }
-                if(!GAMEOVER)
-                {
-                    while(character.Y<550)
-                    {
-                        character.Y++;
-                        Thread.Sleep(10);
-                    }
-                    t.Abort();
-                    t2.Abort();
-           
-                    foreach(var ground in grounds)
-                    {
-                        ground.Stop();
-                    }
-                 
-                }
-
+                GameOver();
                 if (MovingLeft && character.X >= 0)
                 {
                     character.X -= 1;
@@ -330,7 +315,6 @@ namespace DolditMan
                         JumpUP = false;
                         JumpDown = true;
                     }
-
                 }
                 else if (JumpDown)
                 {
@@ -344,7 +328,29 @@ namespace DolditMan
                 Thread.Sleep(15);
             }
         }
-
+        public void GameOver() 
+        {
+            for (int i = 0; i < grounds.Count; i++)
+            {
+                GAMEOVER = GAMEOVER || !(!((character.X >= grounds[i].X || character.X + 65 > grounds[i].X)
+                    && character.X < grounds[i].X + grounds[i].Size * 100) && character.Y == 465);
+            }
+            if (!GAMEOVER)
+            {
+                while (character.Y < 550)
+                {
+                    character.Y++;
+                    Thread.Sleep(10);
+                }
+                WriteScores();
+                t.Abort();
+                t2.Abort();
+                foreach (var ground in grounds)
+                {
+                    ground.Stop();
+                }
+            }
+        }
         private void DolditMan_KeyUp(object sender, KeyEventArgs e)
         {
             if(Keys.Left == e.KeyCode)
@@ -356,7 +362,6 @@ namespace DolditMan
                 MovingRight = false;
             }
         }
-
         private void characterSelection_SelectedIndexChanged(object sender, EventArgs e)
         {
             
